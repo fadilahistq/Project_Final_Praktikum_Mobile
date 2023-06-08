@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Project FInal Praktikum Mobile</string>
+    <string name="app_name">H071211023 - Final Mobile</string>
+    <string name="bottom_navigation_movies">Movies</string>
+    <string name="bottom_navigation_tvShows">TV Shows</string>
+    <string name="bottom_navigation_favorites">Favorites</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
