@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backdrop_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:background="@drawable/circle_background"
+            android:layout_alignParentTop="true"/>
+        <ImageView
+            android:id="@+id/add_favorite"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="5dp"
+            android:src="@drawable/baseline_favorite_border_24"
+            android:background="@drawable/circle_background"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_rate"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_marginTop="180dp"
+        android:backgroundTint="@color/Gunmetal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="170dp"
+            android:paddingRight="20dp"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="title"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:layout_below="@id/title"
+                android:textColor="@color/white"/>
+            <ImageView
+                android:id="@+id/rate_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_star_rate_24"
+                android:layout_below="@id/date"
+                android:layout_alignStart="@id/date" />
+            <TextView
+                android:id="@+id/rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.5"
+                android:layout_below="@id/date"
+                android:layout_toEndOf="@id/rate_star"
+                android:layout_alignBaseline="@id/rate_star"
+                android:textColor="@color/white"/>
+            <ImageView
+                android:id="@+id/ic_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_movie_24"
+                android:layout_below="@id/date"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/sinopsis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Synopsis"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_below="@id/cv_rate"
+                android:textColor="@color/Pink_Lavender"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="20sp"
+                android:text="-"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="15dp"
+        android:backgroundTint="@color/Gunmetal">
+
+        <ImageView
+            android:id="@+id/poster_image"
+            android:layout_width="110dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

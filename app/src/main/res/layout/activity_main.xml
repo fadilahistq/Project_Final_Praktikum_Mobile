@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:layout_alignParentBottom="true"
+        android:background="@color/Space_Cadet"
         app:menu="@menu/bottom_navigation"/>
 
 </RelativeLayout>

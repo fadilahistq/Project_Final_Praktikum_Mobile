@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Pink_Lavender">#F4ABC4</color>
+    <color name="Space_Cadet">#5A5C83</color>
+    <color name="Gunmetal">#343557</color>
+    <color name="Dark_Blue">#070A31</color>
 </resources>
