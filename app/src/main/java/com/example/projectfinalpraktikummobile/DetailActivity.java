@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIES = "extra_movies";
+    public static final String EXTRA_TVSHOWS = "extra_tvshows";
     private ImageView backdropImageView, posterImageView, starImageView, iconImageView;
     private TextView titleTextView, dateTextView, rateTextView, synopsisTextView,overviewTextView, languageTextView, popularTextView;
     private ImageButton backImageView;
@@ -39,6 +40,7 @@ public class DetailActivity extends AppCompatActivity {
         popularTextView =findViewById(R.id.tv_popularity);
 
         MoviesModel movie = getIntent().getParcelableExtra(EXTRA_MOVIES);
+        TvShowsModel tvshows = getIntent().getParcelableExtra(EXTRA_TVSHOWS);
         if (movie != null) {
             String bUrl = "https://image.tmdb.org/t/p/";
             String fSize = "w500";
@@ -69,6 +71,40 @@ public class DetailActivity extends AppCompatActivity {
             rateTextView.setText(voteAverageString);
             languageTextView.setText("Language : " + movie.getOriginalLanguage());
             overviewTextView.setText(movie.getOverview());
+
+            backImageView.setOnClickListener(view -> finish());
+        }
+        if (tvshows != null) {
+            String bUrl = "https://image.tmdb.org/t/p/";
+            String fSize = "w500";
+            String fPath = tvshows.getBackdropPath();
+            String imagesUrl = bUrl + fSize + fPath;
+            Glide.with(this)
+                    .load(imagesUrl)
+                    .apply(new RequestOptions()
+                            .placeholder(R.drawable.baseline_broken_image_24)
+                            .error(R.drawable.baseline_broken_image_24))
+                    .into(backdropImageView);
+
+            String baseUrl = "https://image.tmdb.org/t/p/";
+            String fileSize = "w500";
+            String filePath = tvshows.getPosterPath();
+
+            String imageUrl = baseUrl + fileSize + filePath;
+            Glide.with(this)
+                    .load(imageUrl)
+                    .into(posterImageView);
+
+            titleTextView.setText(tvshows.getName());
+            dateTextView.setText(tvshows.getFirstAirDate());
+            String popularityString = String.format("%.1f", tvshows.getPopularity());
+            popularTextView.setText("Popularity : " + popularityString);
+            String voteAverageString = String.format("%.1f", tvshows.getVoteAverage());
+            rateTextView.setText(voteAverageString);
+            languageTextView.setText("Language : " + tvshows.getOriginalLanguage());
+            overviewTextView.setText(tvshows.getOverview());
+            iconImageView.setImageResource(R.drawable.baseline_tv_24);
+
 
             backImageView.setOnClickListener(view -> finish());
         }

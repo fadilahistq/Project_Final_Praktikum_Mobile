@@ -3,13 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:background="@color/Gunmetal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TvShowsFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/Pink_Lavender"/>
+
+    <TextView
+        android:id="@+id/tv_internet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:text="Please check your internet connection!"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/iv_retry"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/baseline_refresh_24" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/rv_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_movies"
