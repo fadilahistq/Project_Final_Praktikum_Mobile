@@ -1,15 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_movies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
-        app:strokeColor="@color/Dark_Blue"
-        app:strokeWidth="1dp">
+        app:cardElevation="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,9 +18,9 @@
             android:background="@color/Pink_Lavender">
 
             <ImageView
-                android:id="@+id/image_view"
+                android:id="@+id/poster_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background" />
 
@@ -28,9 +28,12 @@
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginHorizontal="7dp"
                 android:textSize="16sp"
                 android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textStyle="bold"
                 android:text="Title"
                 android:textColor="@color/Dark_Blue"/>
@@ -39,8 +42,7 @@
                 android:id="@+id/tv_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textSize="10sp"
+                android:layout_marginBottom="7dp"
                 android:gravity="center"
                 android:text="Year"
                 android:textColor="@color/Dark_Blue"/>

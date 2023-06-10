@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/Gunmetal"
+    tools:context=".DetailActivity">
 
     <ImageView
         android:id="@+id/backdrop_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background" />
+        android:background="@color/Pink_Lavender"
+        android:src="@drawable/baseline_broken_image_24" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/back_button"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -23,12 +28,22 @@
             android:src="@drawable/baseline_arrow_back_24"
             android:background="@drawable/circle_background"
             android:layout_alignParentTop="true"/>
-        <ImageView
+
+        <ToggleButton
             android:id="@+id/add_favorite"
+            android:layout_width="30dp"
+            android:layout_height="37dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:button="@drawable/toggle_selector"
+            android:onClick="onCustomToggleClick"
+            android:textOff=""
+            android:textOn="" />
+        <ImageView
+            android:id="@+id/background_circle"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:padding="5dp"
-            android:src="@drawable/baseline_favorite_border_24"
             android:background="@drawable/circle_background"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"/>
@@ -36,21 +51,21 @@
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_rate"
         android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="180dp"
         android:backgroundTint="@color/Gunmetal">
 
         <RelativeLayout
+            android:id="@+id/cv_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="170dp"
             android:paddingRight="20dp"
-            android:paddingVertical="20dp">
+            android:paddingVertical="10dp">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -58,27 +73,44 @@
                 android:text="title"
                 android:textColor="@color/white"/>
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/tv_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp"
-                android:layout_below="@id/title"
+                android:paddingBottom="5dp"
+                android:layout_below="@id/tv_title"
                 android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:text="-"
+                android:layout_below="@id/tv_date"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/tv_popularity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:text="-"
+                android:layout_below="@id/tv_language"
+                android:textColor="@color/white"/>
+
             <ImageView
                 android:id="@+id/rate_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_star_rate_24"
-                android:layout_below="@id/date"
-                android:layout_alignStart="@id/date" />
+                android:layout_below="@id/tv_popularity" />
             <TextView
-                android:id="@+id/rate"
+                android:id="@+id/tv_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4.5"
-                android:layout_below="@id/date"
+                android:textSize="18sp"
+                android:layout_below="@id/tv_popularity"
                 android:layout_toEndOf="@id/rate_star"
                 android:layout_alignBaseline="@id/rate_star"
                 android:textColor="@color/white"/>
@@ -87,7 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_movie_24"
-                android:layout_below="@id/date"
+                android:layout_below="@id/tv_popularity"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
         <LinearLayout
@@ -95,24 +127,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="20dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="170dp"
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:id="@+id/sinopsis"
+                android:id="@+id/tv_synopsis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Synopsis"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_below="@id/cv_rate"
                 android:textColor="@color/Pink_Lavender"/>
 
             <TextView
+                android:id="@+id/tv_overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:text="-"
                 android:textColor="@color/white"/>
 
@@ -129,13 +161,12 @@
 
         <ImageView
             android:id="@+id/poster_image"
-            android:layout_width="110dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="170dp"
             android:layout_margin="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"/>
 
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>
