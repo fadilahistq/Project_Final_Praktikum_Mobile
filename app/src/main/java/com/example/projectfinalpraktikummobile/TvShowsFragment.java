@@ -1,11 +1,15 @@
 package com.example.projectfinalpraktikummobile;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,29 +46,69 @@ public class TvShowsFragment extends Fragment {
         recyclerView.setAdapter(tvShowsAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-
-        APIService apiService = APIConfig.getClient();
-        String apiKey = APIConfig.getApiKey();
-        Call<TvShowsResponse> call = apiService.getOnAirTvShows(apiKey);
-
-        call.enqueue(new Callback<TvShowsResponse>() {
+        ivRetry.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<TvShowsResponse> call, Response<TvShowsResponse> response) {
-                if (response.isSuccessful()) {
-                    List<TvShowsModel> tvshows = response.body().getResults();
-                    tvShowsAdapter.setTvshows(tvshows);
-                    tvShowsAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getContext(), "Failed to fetch TV Shows.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TvShowsResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                loadData();
             }
         });
+        loadData();
 
         return view;
     }
+
+    private void loadData() {
+        if (isNetworkAvailable()) {
+            progressBar.setVisibility(View.VISIBLE);
+            tvInternet.setVisibility(View.GONE);
+            ivRetry.setVisibility(View.GONE);
+
+            APIService apiService = APIConfig.getClient();
+            String apiKey = APIConfig.getApiKey();
+            Call<TvShowsResponse> call = apiService.getOnAirTvShows(apiKey);
+
+            call.enqueue(new Callback<TvShowsResponse>() {
+                @Override
+                public void onResponse(Call<TvShowsResponse> call, Response<TvShowsResponse> response) {
+                    progressBar.setVisibility(View.GONE);
+                    if (response.isSuccessful()) {
+                        List<TvShowsModel> tvshows = response.body().getResults();
+                        tvShowsAdapter.setTvshows(tvshows);
+                        tvShowsAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getContext(), "Failed to fetch TV Shows.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TvShowsResponse> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            progressBar.setVisibility(View.GONE);
+            tvInternet.setVisibility(View.VISIBLE);
+            ivRetry.setVisibility(View.VISIBLE);
+
+            ivRetry.setOnClickListener(view -> {
+                tvInternet.setVisibility(View.GONE);
+                ivRetry.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+
+                Handler handler = new Handler();
+                handler.postDelayed(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    loadData();
+                }, 500);
+            });
+        }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
+    }
 }
+

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="10dp"
+    android:orientation="vertical"
+    android:gravity="center"
     android:background="@color/Gunmetal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MoviesFragment">
@@ -18,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
         android:text="Please check your internet connection!"
         android:textSize="18sp" />
 
@@ -26,16 +28,13 @@
         android:id="@+id/iv_retry"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
         android:src="@drawable/baseline_refresh_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movies"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/item_movies"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2" />
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
-</FrameLayout>
+</LinearLayout>

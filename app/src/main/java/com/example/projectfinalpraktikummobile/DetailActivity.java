@@ -105,7 +105,6 @@ public class DetailActivity extends AppCompatActivity {
             overviewTextView.setText(tvshows.getOverview());
             iconImageView.setImageResource(R.drawable.baseline_tv_24);
 
-
             backImageView.setOnClickListener(view -> finish());
         }
     }
