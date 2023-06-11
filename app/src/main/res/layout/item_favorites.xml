@@ -1,9 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_favorites"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -18,7 +20,7 @@
             android:background="@color/Pink_Lavender">
 
             <ImageView
-                android:id="@+id/image_view"
+                android:id="@+id/poster_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
@@ -34,7 +36,7 @@
                 android:textStyle="bold"
                 android:text="Title"
                 android:textColor="@color/Dark_Blue"
-                android:layout_toEndOf="@id/image_view"/>
+                android:layout_toEndOf="@id/poster_image"/>
 
             <TextView
                 android:id="@+id/tv_year"
@@ -46,7 +48,7 @@
                 android:text="Year"
                 android:textColor="@color/Dark_Blue"
                 android:layout_below="@id/tv_title"
-                android:layout_toEndOf="@id/image_view"/>
+                android:layout_toEndOf="@id/poster_image"/>
 
             <ImageView
                 android:id="@+id/ic_movie"

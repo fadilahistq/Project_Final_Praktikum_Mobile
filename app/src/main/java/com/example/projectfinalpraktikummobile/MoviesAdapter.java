@@ -1,5 +1,6 @@
 package com.example.projectfinalpraktikummobile;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,15 +26,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         this.movies = movies;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_movies, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MoviesModel movie = movies.get(position);
         holder.titleTextView.setText(movie.getTitle());
 
@@ -46,7 +48,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         String baseUrl = "https://image.tmdb.org/t/p/";
         String fileSize = "w500";
         String filePath = movie.getPosterPath();
-
         String imageUrl = baseUrl + fileSize + filePath;
 
         Glide.with(holder.itemView.getContext())
@@ -58,16 +59,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
             intent.putExtra(DetailActivity.EXTRA_MOVIES, movie);
             holder.itemView.getContext().startActivity(intent);
         });
-
     }
 
     @Override
     public int getItemCount() {
-        if (movies != null) {
-            return movies.size();
-        } else {
-            return 0;
-        }
+        return movies.size();
     }
 
     public void setMovies(List<MoviesModel> movies) {
@@ -75,7 +71,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView titleTextView, dateTextView;
         public ImageView posterImageView;
         public CardView cardmovies;
@@ -89,4 +85,3 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         }
     }
 }
-

@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     TvShowsFragment tvShowsFragment = new TvShowsFragment();
     FavoritesFragment favoritesFragment = new FavoritesFragment();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
